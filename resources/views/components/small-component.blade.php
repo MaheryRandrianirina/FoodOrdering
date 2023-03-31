@@ -1,0 +1,1 @@
+<small class="form-text text-muted fail">{{ html_entity_decode($value) }}</small>

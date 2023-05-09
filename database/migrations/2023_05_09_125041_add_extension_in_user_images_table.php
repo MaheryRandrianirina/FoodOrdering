@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddTimestampsToUserRecipesTable extends Migration
+class AddExtensionInUserImagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddTimestampsToUserRecipesTable extends Migration
      */
     public function up()
     {
-        Schema::table('user_recipes', function (Blueprint $table) {
-            $table->timestamps();
+        Schema::table('user_images', function (Blueprint $table) {
+            $table->string('extension');
         });
     }
 
@@ -25,7 +25,7 @@ class AddTimestampsToUserRecipesTable extends Migration
      */
     public function down()
     {
-        Schema::table('user_recipes', function (Blueprint $table) {
+        Schema::table('user_images', function (Blueprint $table) {
             //
         });
     }

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-<div class="container">
+<div class="container wishes">
     @if($recipes)
         @include('partials.recipes')
     @else

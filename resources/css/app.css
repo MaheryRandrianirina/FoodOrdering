@@ -5,18 +5,10 @@ jaune : #fea702**/
     src: url("../fonts/Roboto-Regular.ttf");
 }
 
-@font-face {
-    font-family: "Montserrat-regular";
-    src: url("../fonts/MontserratAlternates-Regular.otf");
-}
 
 @font-face {
     font-family: "Montserrat-thin";
     src: url("../fonts/MontserratAlternates-Thin.otf");
-}
-@font-face {
-    font-family: "Montserrat-SemiBold";
-    src: url("../fonts/MontserratAlternates-SemiBold.otf");
 }
 
 * {
@@ -25,6 +17,12 @@ jaune : #fea702**/
 
 html {
     height: 100%;
+    --primary: #56508c;
+    --gray: #dfdfdf;
+    --black: #2c2c2c;
+}
+html::selection {
+    background-color: transparent;
 }
 body {
     height: 100%;
@@ -32,6 +30,7 @@ body {
     padding: 0;
     font-family: "Roboto", sans-serif;
     background-color: rgba(36, 36, 36, 0.507);
+    color: var(--black);
 }
 
 main {
@@ -52,7 +51,7 @@ button {
 }
 header {
     position: fixed;
-    font-family: 'Montserrat-regular';
+    font-family: 'Montserrat';
     padding: 10px;
     z-index: 10;
     background: #fff;
@@ -62,6 +61,7 @@ header {
 header .navigation {
     display: flex;
     flex-wrap: nowrap;
+    align-items: center;
     justify-content: space-around;
 }
 .citations h3 {
@@ -82,6 +82,7 @@ header h1 {
 header nav {
     position: relative;
     width: 20%;
+    height: 40px;
 }
 
 header .search {
@@ -115,11 +116,12 @@ header .login {
 }
 
 .search_results {
-    background: rgb(209, 209, 209);
-    border-radius: 10px;
     padding: 30px 15px;
 }
-
+.search_results h3 {
+    margin-bottom: 20px;
+    font-weight: 600;
+}
 .mobile_login {
     background-color: #56508c;
     padding: 3px;
@@ -163,16 +165,20 @@ header .logout, header .basket {
     display: none;
 }
 
-.not_logged_header h1 {
-    text-align: center;
-    margin: 0 auto;
+.not_logged_header {
+    height: 50px;
 }
 
+.not_logged_header h1 {
+    text-align: center;
+    margin: 5px auto;
+    font-weight: bold;
+}
 .search form {
     height: 100%;
     display: flex;
     color: #09405c;
-    border: 1.5px solid #09405c;
+    background-color: var(--gray);
     border-radius: 30px;
     position: relative;
 }
@@ -182,7 +188,6 @@ header .logout, header .basket {
     width: 100%;
     height: 100%;
     padding: 5px;
-    color: #fff;;
 }
 
 .search-input {
@@ -193,6 +198,7 @@ header .logout, header .basket {
     font-size: 12px;
     background: transparent;
     border: none;
+    padding: 10px;
 }
 
 .search-input::placeholder {
@@ -206,13 +212,13 @@ header .logout, header .basket {
 .search button {
     width: 20%;
     height: 100%;
-    background: #09405c;
     border: none;
     border-top-right-radius: 30px;
     border-bottom-right-radius: 30px;
     position: absolute;
     right: 0;
     transition: filter .3s;
+    background-color: var(--gray);
 }
 
 .search button:hover {
@@ -222,7 +228,7 @@ header .logout, header .basket {
 .search-suggestions {
     display: none;
     position: fixed;
-    top: 45px;
+    top: 55px;
     color: rgb(0, 0, 0);
     border-radius: 5px;
     background-color: rgb(255, 255, 255);
@@ -275,12 +281,14 @@ FIN PARTIE LOADER ANIME
 -------------*/
 .form-container {
     padding: 20px;
+    width: 260px;
+    margin: 0 auto;
 }
 
 .form-container .pwd, 
 .form-container .pseudo, 
 .form-container .remember-me, .form-container button, .form-register-container .already-registered {
-    margin-top: 50px;
+    margin-top: 40px;
     width: 100%;
 }
 
@@ -294,7 +302,7 @@ FIN PARTIE LOADER ANIME
 
 
 .no-account {
-    font-size: 12px;
+    font-size: 14px;
 }
 
 .no-account a {
@@ -315,6 +323,7 @@ button {
     background: #56508c;
     color: #fff;
     padding: 10px;
+    border-radius: 8px;
     transition: filter .3s;
 }
 
@@ -355,7 +364,9 @@ button {
 
 .form-container .pseudo_input input, .form-container .password_input input, .form-register-container input {
     width: 90%;
-    border-radius: 5px;
+    height: 40px;
+    padding: 10px;
+    border-radius: 20px;
     border: 1px solid #09405c;
 }
 .form-register-container input {
@@ -368,6 +379,7 @@ button {
 
 .remember-me span {
     margin-left: 20px;
+    font-weight: 500;
 }
 
 .button {
@@ -404,7 +416,8 @@ button {
 
 .button.add {
     background-color: #56508c;
-    font-family: "Montserrat-SemiBold";
+    font-family: "Montserrat";
+    font-weight: 600;
     box-shadow: 1px 1px 3px #272729;
     cursor: pointer;
 }
@@ -415,7 +428,8 @@ button {
     padding: 10px;
     text-align: center;
     background-color: #56508c;
-    font-family: "Montserrat-SemiBold";
+    font-family: "Montserrat";
+    font-weight: 600;
     cursor: pointer;
     transition: filter .3s;
 }
@@ -426,16 +440,13 @@ button {
     animation: boundButton .7s both 0s ease;
 }
 
-.add:hover {
-    box-shadow: 0 0 5px #56508c;
-}
-
 .button.actions {
     position: absolute;
     right: 0;
     width: 100px;
     background-color: #56508c;
-    font-family: "Montserrat-SemiBold";
+    font-family: "Montserrat";
+    font-weight: 600;
     box-shadow: 1px 1px 3px #272729;
     cursor: pointer;
 }
@@ -572,9 +583,8 @@ button {
 /** PARTIE PHOTO DE PROFIL DE TOUT UTILISATEUR**/
 .profile-photo-menu {
     position: fixed;
-    background: #252525;
+    background: var(--gray);
     border-radius: 5px;
-    box-shadow: -1px -1px 2px #252525;
     top: 37px;
     z-index: 10;
     width: 120px;
@@ -755,7 +765,6 @@ PARTIE PROFILE PHOTO
 }
 
 .profile {
-    display: inline-block;
     color: #09405c;
     margin-top: 5px;
     float: right;
@@ -997,7 +1006,7 @@ PARTIE RECIPES
 
 .box .box-description {
     position: relative;
-    height: 170px;
+    height: 180px;
     padding: 30px 15px 0;
 }
 
@@ -1012,8 +1021,8 @@ PARTIE RECIPES
 }
 
 .recipe_name {
+    font-size: 20px;
     text-transform: uppercase;
-    color: #09405c;
     font-weight: bold;
     letter-spacing: 3px;
     margin: 0;
@@ -1021,9 +1030,10 @@ PARTIE RECIPES
 
 .recipe_price {
     font-weight: 500;
-    font-size: 14px;
+    font-size: 16px;
+    font-style: italic;
     height: 30px;
-    width: 70px;
+    width: 80px;
     margin: 0;
     padding: 5px 3px 0 8px;
     position: absolute;
@@ -1031,17 +1041,34 @@ PARTIE RECIPES
     right: 25px;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
-    color: #252525;
-    background-color: rgb(231, 231, 231);
+    background-color: var(--gray);
+    color: var(--black);
 }
 
 .recipe_description {
-    font-size: 14px;
-    font-family: "Montserrat-regular";
-    margin: 10px 0;
+    position: relative;
+    font-size: 1rem;
+    height: 60px;
+    margin: 10px 0 16px;
     line-height: 20px;
+    letter-spacing: 2.5px;
 }
-
+.recipe_description i {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: inline-block;
+    margin-right: 10px;
+    width: 20px;
+}
+.recipe_description p {
+    position: absolute;
+    top: 0;
+    left: 30px;
+    display: inline-block;
+    width: 80%;
+    margin: 0;
+}
 .recipe_created_at {
     font-size: 12px;
     color: rgb(114, 114, 114);
@@ -1288,6 +1315,7 @@ CAROUSEL
 
 .carousel {
     position: relative;
+    overflow-x: hidden;
 }
 
 .carousel__container {
@@ -1377,7 +1405,13 @@ COMMANDS
     text-align: center;
     width: 100%;
 }
+.container.wishes {
+    margin-top: 30px;
+}
 
+.wishes img {
+    width: 100%;
+}
 .admin-table .tab-head {
     background: #09405c;
     color: #fff;
@@ -1746,7 +1780,14 @@ FIN COMMANDS
         top: 30%;
     }
     .carousel__item .box-description, .category_recipes .box-description {
-        height: 130px;
+        height: 180px;
+    }
+    .form-container {
+        width: 336px;
+        margin: 0 auto;
+    }
+    .container.wishes .box {
+        width: 80%;
     }
 }
 
@@ -1791,7 +1832,8 @@ FIN COMMANDS
     }
     
     .form-container {
-        margin: 0 13%;
+        width: 336px;
+        margin: 0 auto;
     }
 
     .form-container form {
@@ -1809,6 +1851,9 @@ FIN COMMANDS
     }
     .carousel__item .box .box-body img {
         height: 200px;
+    }
+    .container.wishes .box {
+        width: 50%;
     }
 }
 
@@ -1964,7 +2009,8 @@ FIN COMMANDS
         display: block;
     }
     .form-container {
-        margin: 0 20%;
+        width: unset;
+        margin: 0 28%;
     }
     .form-container form {
         border: none;
@@ -1997,15 +2043,17 @@ FIN COMMANDS
         right: 80px;
         margin-top: 8px;
         padding: 8px;
+        width: 120px;
+        text-align: center;
         height: 35px;
-        color: #09405c;
-        border: 1px solid #09405c;
-        border-radius: 30px;
-        transition: background .3s, filter .3s;
+        color: var(--primary);
+        border: 1px solid var(--primary);
+        border-radius: 20px;
+        transition: background .3s, color .3s;
     }
     
     nav .logout:hover {
-        background-color: #09405c;
+        background-color: var(--primary);
         color: #fff;
         filter: contrast(1.2);
     }
@@ -2032,6 +2080,10 @@ FIN COMMANDS
 
     .category_recipes .box, .search_results .box {
         width: 32%;
+    }
+
+    .container.wishes .box {
+        width: 30%;
     }
 }
 
@@ -2060,7 +2112,7 @@ FIN COMMANDS
     }
 
     .form-container{
-        margin: 0 25%;
+        margin: 0 30%;
     }
 }
 
@@ -2076,6 +2128,13 @@ FIN COMMANDS
     .category_recipes .box, .search_results .box {
         width: 23%;
         margin-right: 30px;
+    }
+
+    .container.wishes .box {
+        width: 25%;
+    }
+    .container.wishes img {
+        height: 250px;
     }
 }
 

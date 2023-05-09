@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddIsSuperAdminToUsersTable extends Migration
+class AddAdminIdInRecipesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddIsSuperAdminToUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->addColumn('boolean', 'is_superadmin', ['default' => 0]);
+        Schema::table('recipes', function (Blueprint $table) {
+            $table->foreign('admin_id')->references('id')->on('users')->constrained()->onDelete('cascade');
         });
     }
 
@@ -25,7 +25,7 @@ class AddIsSuperAdminToUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('recipes', function (Blueprint $table) {
             //
         });
     }

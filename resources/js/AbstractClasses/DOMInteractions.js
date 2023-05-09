@@ -443,7 +443,15 @@ export default class DOMInteractions {
     setMenuPositionByBtnClickedAndMenuWidth()
     {
         let buttonRect = this.btnClickedForMenu.getBoundingClientRect()
-        this.menu.style.left = buttonRect.x - this.menu.offsetWidth / 2 + "px"
+        let overflow
+        const leftAndWidthSum = buttonRect.left + this.menu.offsetWidth
+        if(window.innerWidth < leftAndWidthSum){
+            overflow = leftAndWidthSum - window.innerWidth
+            this.menu.style.left = buttonRect.left - overflow - 10 + "px"
+        }else {
+            this.menu.style.left = buttonRect.left - 10 + "px"
+        }
+        
         this.menu.style.top = buttonRect.top + this.btnClickedForMenu.offsetHeight + 'px'
         
     }

@@ -28,8 +28,8 @@
             @endif
         </p>
         @endif
-        <p class="recipe_description"><i class="fas fa-newspaper"></i> {{ $recipe->description }}</p>
-        <p class="recipe_created_at"><i class="fas fa-check"></i> {{ $recipe->created_at }}</p>
+        <div class="recipe_description"><i class="fas fa-newspaper"></i> <p>{{ $recipe->description }}</p></div>
+        <p class="recipe_created_at"><i class="fas fa-check"></i> {{ $recipe->created_at->format("d/m/Y H:i") }}</p>
     </div>
     <div class="buttons actions">
         @csrf

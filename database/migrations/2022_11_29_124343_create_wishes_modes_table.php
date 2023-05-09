@@ -15,6 +15,7 @@ class CreateWishesModesTable extends Migration
     {
         Schema::create('wishes', function (Blueprint $table) {
             $table->id()->unsigned();
+            $table->foreignId('user_id')->constrained()->onDelete("cascade");
             $table->foreignId('recipe_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });

@@ -13,6 +13,7 @@
 @section('content')
 <div class="container">
     <div class="search_results">
+        <h3>RESULTATS DE LA RECHERCHE</h3>
         @if(!empty($recipes))
             @include('partials.recipes')
         @else

@@ -8,6 +8,7 @@ export function Search(){
 
         q.addEventListener('click', getAll)
         q.addEventListener('keyup', showSearchSuggestions)
+
         document.body.addEventListener('click', (e)=>{
             let suggestionsContainer = document.querySelector('.search-suggestions')
             if(suggestionsContainer !== null){
@@ -74,13 +75,14 @@ export function getAll(e){
 
     if(q.getAttribute('name') === 'q'){
         const isFirstSearch = localStorage.getItem('is-first-search')
-        q.parentElement.querySelector('.loupe').classList.add('add-one-px-pad')
+        const qParent = q.parentElement
+        qParent.querySelector('.loupe').classList.add('add-one-px-pad')
 
         if(document.querySelector('.search-suggestions') === null){
             let suggestionsContainer = createElement('div', 'search-suggestions')
             document.body.appendChild(suggestionsContainer)
             suggestionsContainer.style.left = q.getBoundingClientRect().left + 'px'
-            suggestionsContainer.style.width = q.clientWidth + 'px'
+            suggestionsContainer.style.width = qParent.clientWidth + 'px'
 
             if(isFirstSearch === null){
                 get('/get-all')

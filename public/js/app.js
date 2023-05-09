@@ -6166,7 +6166,14 @@ var DOMInteractions = /*#__PURE__*/function () {
     key: "setMenuPositionByBtnClickedAndMenuWidth",
     value: function setMenuPositionByBtnClickedAndMenuWidth() {
       var buttonRect = this.btnClickedForMenu.getBoundingClientRect();
-      this.menu.style.left = buttonRect.x - this.menu.offsetWidth / 2 + "px";
+      var overflow;
+      var leftAndWidthSum = buttonRect.left + this.menu.offsetWidth;
+      if (window.innerWidth < leftAndWidthSum) {
+        overflow = leftAndWidthSum - window.innerWidth;
+        this.menu.style.left = buttonRect.left - overflow - 10 + "px";
+      } else {
+        this.menu.style.left = buttonRect.left - 10 + "px";
+      }
       this.menu.style.top = buttonRect.top + this.btnClickedForMenu.offsetHeight + 'px';
     }
   }, {
@@ -6746,12 +6753,13 @@ function getAll(e) {
   var q = e.target;
   if (q.getAttribute('name') === 'q') {
     var isFirstSearch = localStorage.getItem('is-first-search');
-    q.parentElement.querySelector('.loupe').classList.add('add-one-px-pad');
+    var qParent = q.parentElement;
+    qParent.querySelector('.loupe').classList.add('add-one-px-pad');
     if (document.querySelector('.search-suggestions') === null) {
       var suggestionsContainer = (0,_create_modal__WEBPACK_IMPORTED_MODULE_1__.createElement)('div', 'search-suggestions');
       document.body.appendChild(suggestionsContainer);
       suggestionsContainer.style.left = q.getBoundingClientRect().left + 'px';
-      suggestionsContainer.style.width = q.clientWidth + 'px';
+      suggestionsContainer.style.width = qParent.clientWidth + 'px';
       if (isFirstSearch === null) {
         (0,_ajax__WEBPACK_IMPORTED_MODULE_0__.get)('/get-all').then(function (res) {
           localStorage.setItem('search-keys', res);
@@ -6805,6 +6813,20 @@ function SimpleUserButtonsAction() {
   });
   images.forEach(function (image) {
     image.addEventListener('dblclick', AddToWish);
+    var touchCount = 0;
+    var firstTouchTime = 0;
+    image.addEventListener('touchstart', function (e) {
+      touchCount++;
+      console.log(touchCount);
+      if (touchCount === 1) {
+        firstTouchTime = Date.now();
+      } else if (touchCount === 2) {
+        if (touchCount === 2 && Date.now() - firstTouchTime <= 1000) {
+          AddToWish(e);
+        }
+        touchCount = 0;
+      }
+    });
   });
 }
 
@@ -6814,6 +6836,7 @@ function SimpleUserButtonsAction() {
  * @param {Event} e 
  */
 var AddToWish = function AddToWish(e) {
+  console.log('add to wish');
   var heartIcon;
   var target = e.currentTarget;
   var img;
@@ -8135,7 +8158,6 @@ var CarouselTouchEvent = /*#__PURE__*/function () {
   _createClass(CarouselTouchEvent, [{
     key: "startDrag",
     value: function startDrag(e) {
-      e.preventDefault();
       if (e.touches) {
         if (e.touches.length > 1) {
           return;

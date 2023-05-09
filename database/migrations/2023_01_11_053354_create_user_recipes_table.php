@@ -14,8 +14,13 @@ class CreateUserRecipesTable extends Migration
     public function up()
     {
         Schema::create('user_recipes', function (Blueprint $table) {
+            $table->id();
+            $table->integer("quantity");
+            $table->string("address");
+            $table->boolean("delivered");
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('recipe_id')->constrained()->onDelete('cascade');
+            $table->timestamps();
         });
     }
 

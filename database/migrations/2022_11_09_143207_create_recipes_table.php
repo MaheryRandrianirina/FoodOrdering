@@ -21,7 +21,6 @@ class CreateRecipesTable extends Migration
             $table->mediumText('description')->nullable();
             $table->string('slug');
             $table->integer('selled')->default(0);
-            $table->foreignId('admin_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

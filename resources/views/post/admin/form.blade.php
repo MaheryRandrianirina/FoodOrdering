@@ -19,7 +19,6 @@
     <p class="files"><i class="fas fa-file-upload"></i>Fichiers</p>
     <div class="inputs">
         <x-InputComponent type='file' name='image1' label='Image 1' error="{{ $error['image1'][0] ?? '' }}"/>
-
         <x-InputComponent type='file' name='image2' label='Image 2' error="{{ $error['image2'][0] ?? '' }}"/>
     </div>
 </div>
@@ -29,7 +28,7 @@
     <div class="inputs">
         <x-InputComponent type='number' name='price' label='Valeur' error="{{ $error['price'][0] ?? '' }}" value="{{ $recipe->price ?? null }}"/>
 
-        <x-InputComponent type='text' name='unity' label='Unité' error="{{ $error['unity'][0] ?? '' }}" value="{{ $recipe->unity ?? null }}"/>
+        <x-InputComponent type='text' name='unity' label='Devise' error="{{ $error['unity'][0] ?? '' }}" value="{{ $recipe->unity ?? null }}"/>
     </div>
 </div>
 

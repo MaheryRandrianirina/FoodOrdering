@@ -1,4 +1,5 @@
 export default class Heart {
+    
     constructor(img)
     {
         this.img = img
@@ -15,6 +16,7 @@ export default class Heart {
         if(heart !== null){
             this.img.parentElement.removeChild(heart)
         }
+
         let i = document.createElement('i')
         i.className = 'fas fa-heart'
         this.img.after(i)

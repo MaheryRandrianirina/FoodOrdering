@@ -23,6 +23,23 @@ export function SimpleUserButtonsAction()
 
     images.forEach(image => {
         image.addEventListener('dblclick', AddToWish)
+
+        let touchCount =  0
+        let firstTouchTime = 0
+
+        image.addEventListener('touchstart', (e)=>{
+            touchCount++
+            console.log(touchCount)
+            if(touchCount === 1){
+                firstTouchTime = Date.now()
+            }else if(touchCount === 2){
+                if(touchCount === 2 && Date.now() - firstTouchTime <= 1000){
+                    AddToWish(e)
+                }
+                touchCount = 0
+            }
+        })
+        
     })
 }
 
@@ -32,6 +49,7 @@ export function SimpleUserButtonsAction()
  * @param {Event} e 
  */
 export const AddToWish = (e)=>{
+    console.log('add to wish')
     let heartIcon
     let target = e.currentTarget
     let img 

@@ -275,7 +275,6 @@ class CarouselTouchEvent {
      * @returns 
      */
     startDrag(e) {
-        e.preventDefault()
 
         if(e.touches){
             if(e.touches.length > 1){

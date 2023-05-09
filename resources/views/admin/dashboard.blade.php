@@ -18,7 +18,7 @@ use App\Http\Controllers\PostController;
         <div class="alert alert-success">{{ session()->get('success') }}</div>
         @endif
     </div> 
-    @if($categories->isNotEmpty() === 1)
+    @if($categories->isNotEmpty())
     <div class="recipes">
             @foreach($categories as $category)
             <?php

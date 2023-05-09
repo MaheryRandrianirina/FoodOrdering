@@ -78,7 +78,7 @@ class PostController extends Controller
 
         if(!is_null($request->image2)){
             $image2 = $recipeImageUpload->upload($request->image2);
-
+            
             $this->insertImageIntoDatabase([
                 [
                     'image' => $image1, 
@@ -93,6 +93,7 @@ class PostController extends Controller
             ]);
             
         }else{
+            
             $this->insertImageIntoDatabase([
                 [
                     'image' => $image1, 

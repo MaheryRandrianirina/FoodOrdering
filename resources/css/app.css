@@ -195,6 +195,10 @@ header .logout, header .basket {
     border: none;
 }
 
+.search-input::placeholder {
+    margin-left: 10px;
+}
+
 .parent {
     position: relative;
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\AdminOrderTableUpdate;
 use App\Models\Recipe;
 use App\Models\Recipe_user;
 use App\Services\StripeService;
@@ -55,10 +56,11 @@ class PayementController extends Controller
             $recipe->update([
                 'selled' => $request->quantity
             ]);
-    
-            $user->charge($price, $request->payment_method);
             
-            return redirect('/')->with("success", 'Achat éffectué !');
+            //AdminOrderTableUpdate::dispatch(['a', 'b']);
+            //$user->charge($price, $request->payment_method);
+            
+            //return redirect('/')->with("success", 'Achat éffectué !');
         }catch(Exception $e){
             throw new Exception("Le payment a échoué à cause d'une erreur : " . $e->getMessage());
         }

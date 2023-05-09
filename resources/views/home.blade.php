@@ -6,7 +6,7 @@
     @if(session()->get('success'))
     <p class="payment-success">{{ session()->get('success') }}</p>
     @endif
-    @if($categories->isNotEmpty() === 1)
+    @if($categories->isNotEmpty())
         @foreach($categories as $category)
         <?php
         $recipes = PostController::findByCategoryId($category->id);

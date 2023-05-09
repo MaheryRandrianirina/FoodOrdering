@@ -7,14 +7,15 @@ class ImageUpload {
 
     protected $directory;
 
-    public function upload($image)
+    public function upload($image): string
     {
         return $this->store($image);
         
     }
 
-    protected function store($image)
+    protected function store($image): string
     {
-        return Storage::disk('public')->put($this->directory, $image);
+        $link = Storage::disk('public')->put($this->directory, $image);
+        return $link;
     }
 }

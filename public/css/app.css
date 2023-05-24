@@ -1,8 +1,8 @@
 /**
 jaune : #fea702**/
 @font-face {
-    font-family: "Roboto";
-    src: url(/fonts/Roboto-Regular.ttf?fc2b5060f7accec5cf74437196c1b027);
+    font-family: "Montserrat";
+    src: url(/fonts/MontserratAlternates-Regular.otf?a5a4219b37b4e2270a3c63b8834150ff);
 }
 
 
@@ -31,7 +31,7 @@ body {
     height: 100%;
     margin: 0;
     padding: 0;
-    font-family: "Roboto", sans-serif;
+    font-family: "Montserrat", sans-serif;
     background-color: rgba(36, 36, 36, 0.507);
     color: var(--black);
 }
@@ -982,41 +982,6 @@ PARTIE RECIPES
     width: 100%;
 }
 
-.category_recipes .box {
-    margin-bottom: 50px;
-}
-
-.box {
-    margin-bottom: 30px;
-}
-
-.carousel__item .box {
-    margin: 0 10px;
-    color: #252525;
-}
-
-.carousel__item .box .box-header {
-    padding: 10px;
-    background-color: #09405c;
-    color: #fff;
-}
-
-.box .box-body {
-    position: relative;
-}
-
-.box-body img {
-    height: 200px;
-    width: 100%;
-    border-radius: 30px;
-}
-
-.box .box-description {
-    position: relative;
-    height: 180px;
-    padding: 30px 15px 0;
-}
-
 .empty_recipes {
  text-align: center;
  color: #09405c;
@@ -1027,8 +992,39 @@ PARTIE RECIPES
     font-size: 50px;
 }
 
+.owl-carousel {
+    margin-bottom: 40px;
+}
+
+.box .box-body {
+    position: relative;
+}
+.box .box-description {
+    position: relative;
+    height: 200px;
+    padding: 10px 15px 0;
+}
+
+.recipe_description {
+    display: grid;
+    grid-template-columns: 10% 85%;
+    -moz-column-gap: 10px;
+         column-gap: 10px;
+    position: relative;
+    font-size: 1rem;
+    margin: 15px 0 16px;
+    line-height: 20px;
+    letter-spacing: 2.5px;
+}
+.recipe_description i {
+    display: inline-block;
+}
+.recipe_description p {
+    display: inline-block;
+    margin: 0;
+}
 .recipe_name {
-    font-size: 20px;
+    font-size: 16px;
     text-transform: uppercase;
     font-weight: bold;
     letter-spacing: 3px;
@@ -1052,37 +1048,32 @@ PARTIE RECIPES
     color: var(--black);
 }
 
-.recipe_description {
-    position: relative;
-    font-size: 1rem;
-    height: 60px;
-    margin: 10px 0 16px;
-    line-height: 20px;
-    letter-spacing: 2.5px;
-}
-.recipe_description i {
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: inline-block;
-    margin-right: 10px;
-    width: 20px;
-}
-.recipe_description p {
-    position: absolute;
-    top: 0;
-    left: 30px;
-    display: inline-block;
-    width: 80%;
-    margin: 0;
-}
 .recipe_created_at {
+    position: absolute;
     font-size: 12px;
     color: rgb(114, 114, 114);
+    bottom: 15px;
+    margin-bottom: 0;
 }
 .recipe-img {
     width: 100%;
     height: 100%;
+}
+.recipe_price {
+    font-weight: 500;
+    font-size: 16px;
+    font-style: italic;
+    height: 30px;
+    width: 80px;
+    margin: 0;
+    padding: 5px 3px 0 8px;
+    position: absolute;
+    bottom: 0;
+    right: 25px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    background-color: var(--gray);
+    color: var(--black);
 }
 .price {
     color: #fff;
@@ -1316,60 +1307,6 @@ FIN PARTIE MENU BAR
 CAROUSEL
 -------------------*/
 
-#Carousel {
-    margin-bottom: 50px;
-}
-
-.carousel {
-    position: relative;
-    overflow-x: hidden;
-}
-
-.carousel__container {
-    transition: transform .3s;
-    /* afin d'eviter qu'il n'applique d'autre tranform, préciser le transform qu'il va prendre 
-    avec une valeur initiale*/
-    transform: translate3d(0,0,0);
-}
-.carousel__container::after {
-    content: '';
-    clear: both;
-    display: table;
-}
-
-.carousel__item {
-    float: left;
-}
-
-.carousel__next, .carousel__prev {
-    position: absolute;
-    top: 26%;
-    width: 25px;
-    height: 25px;
-    font-size: 14px;
-    right: 0;
-    margin-top: -15px;
-    padding: 6px 7px;
-    border-radius: 50%;
-    font-weight: bold;
-    background-color: rgb(209, 209, 209);
-    box-shadow: 1px 1px 4px rgb(158, 158, 158);
-    -webkit-backdrop-filter: blur(1px);
-            backdrop-filter: blur(1px);
-    color: #56508c;
-    transition: transform .3s, opacity .2s;
-    cursor: pointer;
-}
-.carousel__prev {
-    left: 20px;
-}
-.carousel__next:hover, .carousel__prev:hover {
-    transform: scale(1.2);
-}
-
-.carousel--next__hidden, .carousel--prev__hidden {
-    opacity: 0;
-}
 /*-------------------
 FIN CAROUSEL
 -------------------*/
@@ -1673,22 +1610,6 @@ FIN COMMANDS
         width: calc(100% - 102px);
     }
 
-    .category_recipes .box, .search_results .box-body {
-        width: 310px;
-    }
-
-    .category_recipes .box-body .recipe_price, .search_results .box-body .recipe_price {
-        right: 40px;
-    }
-
-    .carousel__item .box-body .recipe_price {
-        right: 20%;
-    }
-    .carousel__item .box .box-body img {
-        height: 300px;
-        width: 100%;
-    }
-
     .sure {
         margin-left: auto;
         margin-right: auto;
@@ -1782,20 +1703,14 @@ FIN COMMANDS
     }
 }
 
-
-@media only screen and (min-width:350px) and (max-width:500px) {
-    .carousel__next, .carousel__prev {
-        top: 30%;
-    }
-    .carousel__item .box-description, .category_recipes .box-description {
+@media only screen and (min-width:300px) and (max-width:310px){
+    .box .box-description {
         height: 180px;
     }
-    .form-container {
-        width: 336px;
-        margin: 0 auto;
-    }
-    .container.wishes .box {
-        width: 80%;
+}
+@media only screen and (min-width:311px) {
+    .box .box-description {
+        height: 160px;
     }
 }
 
@@ -1828,10 +1743,6 @@ FIN COMMANDS
         display: none;
     }
 
-    .category_recipes .box-description {
-        height: 140px;
-    }
-
     .login {
         top: 0;
     }
@@ -1857,11 +1768,9 @@ FIN COMMANDS
     .remember-me input {
         border: 1px solid #56508c;
     }
-    .carousel__item .box .box-body img {
-        height: 200px;
-    }
-    .container.wishes .box {
-        width: 50%;
+
+    .box .box-description {
+        height: 140px;
     }
 }
 
@@ -1895,14 +1804,6 @@ FIN COMMANDS
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
-    }
-
-    .category_recipes .box, .search_results .box {
-        width: 48%;
-    }
-
-    .category_recipes .box-body, .search_results .box-body {
-        width: 100%;
     }
 
     .admin-table .tab-head .head_user {
@@ -1958,18 +1859,33 @@ FIN COMMANDS
     }
 }
 
+
+@media only screen and (min-width:600px) and (max-width:625px){
+    
+    .box .box-description {
+        height: 235px;
+    }
+}
+
+@media only screen and (min-width:626px){
+    
+    .box .box-description {
+        height: 210px;
+    }
+}
+
 @media only screen and (min-width: 701px) {
 
     .admin-main .commands_container {
         padding: 20px 50px;
     }
 
-    .category_recipes .box, .search_results .body {
-        width: 44%;
-    }
-
     .container.new_recipe_form_container, .container.edit_recipe_form_container {
         padding: 0 15%;
+    }
+
+    .box .box-description {
+        height: 200px;
     }
 }
 
@@ -2085,13 +2001,17 @@ FIN COMMANDS
     .bars, .hamburger-menu {
         display: none;
     }
+}
 
-    .category_recipes .box, .search_results .box {
-        width: 32%;
+@media only screen and (min-width:830px) and (max-width:875px){
+    .box .box-description {
+        height: 175px;
     }
+}
 
-    .container.wishes .box {
-        width: 30%;
+@media only screen and (min-width:876px) and (max-width:1000px){
+    .box .box-description {
+        height: 160px;
     }
 }
 
@@ -2122,6 +2042,21 @@ FIN COMMANDS
     .form-container{
         margin: 0 30%;
     }
+    .box .box-description {
+        height: 235px;
+    }
+}
+
+@media only screen and (min-width:1050px) and (max-width:1093px){
+    .box .box-description {
+        height: 215px;
+    }
+}
+
+@media only screen and (min-width:1094px) {
+    .box .box-description {
+        height: 200px;
+    }
 }
 
 @media only screen and (min-width: 1150px) {
@@ -2133,14 +2068,6 @@ FIN COMMANDS
         justify-content: left;
     }
 
-    .category_recipes .box, .search_results .box {
-        width: 23%;
-        margin-right: 30px;
-    }
-
-    .container.wishes .box {
-        width: 25%;
-    }
     .container.wishes img {
         height: 250px;
     }

@@ -6817,7 +6817,6 @@ function SimpleUserButtonsAction() {
     var firstTouchTime = 0;
     image.addEventListener('touchstart', function (e) {
       touchCount++;
-      console.log(touchCount);
       if (touchCount === 1) {
         firstTouchTime = Date.now();
       } else if (touchCount === 2) {
@@ -7655,6 +7654,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_simple_user_buttons_action__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./actions/simple-user-buttons-action */ "./resources/js/actions/simple-user-buttons-action.js");
 /* harmony import */ var _admin_dashboard_interactions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./admin-dashboard-interactions */ "./resources/js/admin-dashboard-interactions.js");
 /* harmony import */ var _carousel__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./carousel */ "./resources/js/carousel.js");
+/* harmony import */ var _carousel__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_carousel__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var _bars_menu__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./bars-menu */ "./resources/js/bars-menu.js");
 /* harmony import */ var _responsive__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./responsive */ "./resources/js/responsive.js");
 /* harmony import */ var _actions_logout__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./actions/logout */ "./resources/js/actions/logout.js");
@@ -7722,9 +7722,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ BarsMenu)
 /* harmony export */ });
 /* harmony import */ var _create_modal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./create-modal */ "./resources/js/create-modal.js");
-/* harmony import */ var _ajax__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ajax */ "./resources/js/ajax.js");
-/* harmony import */ var _actions_logout__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./actions/logout */ "./resources/js/actions/logout.js");
-
+/* harmony import */ var _actions_logout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./actions/logout */ "./resources/js/actions/logout.js");
 
 
 var bars;
@@ -7772,7 +7770,7 @@ var ShowHamburgerMenu = function ShowHamburgerMenu(e) {
                 e.stopPropagation();
               });
             }
-            logout.addEventListener('click', _actions_logout__WEBPACK_IMPORTED_MODULE_2__.HandleLogout);
+            logout.addEventListener('click', _actions_logout__WEBPACK_IMPORTED_MODULE_1__.HandleLogout);
           }
         });
         i = 0;
@@ -7868,380 +7866,25 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*!**********************************!*\
   !*** ./resources/js/carousel.js ***!
   \**********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ (() => {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Carousel": () => (/* binding */ Carousel)
-/* harmony export */ });
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _actions_simple_user_buttons_action__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./actions/simple-user-buttons-action */ "./resources/js/actions/simple-user-buttons-action.js");
-function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
-function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
-function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
-
-
-var Carousel = /*#__PURE__*/function () {
-  /**
-   * @callback moveCallback
-   * @param {number} index
-   */
-
-  /**
-   *
-   * @param {HTMLElement} element
-   * @param {*} options
-   * @param {boolean} [options.loop = false] doit-on boucler en fin de chaine ?
-   */
-  function Carousel(element) {
-    var _this = this;
-    var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-    _classCallCheck(this, Carousel);
-    this.element = element;
-    this.options = Object.assign({}, {
-      visible: 2,
-      offset: 1,
-      loop: false
-    }, options);
-    var children = [].slice.call(element.children);
-    // ce sera sur ça qu'on fera se deplacer le carousel
-    this.root = this.createElement('div', 'carousel');
-    this.root.setAttribute('tabindex', '0');
-    // ce sera ça qui se deplacera
-    this.container = this.createElement('div', 'carousel__container');
-    this.root.appendChild(this.container);
-    this.element.appendChild(this.root);
-    this.moveCallbacks = [];
-    this.currentItem = 0;
-    this.isMobile = false;
-    this.isDesktop = false;
-    this.items = children.map(function (child) {
-      var item = _this.createElement('div', 'carousel__item');
-      item.appendChild(child);
-      _this.container.appendChild(item);
-      return item;
-    });
-    this.setStyle();
-    this.handleResize();
-    this.createNavigation();
-
-    // EVENEMENTS
-    this.moveCallbacks.forEach(function (cb) {
-      return cb(0);
-    });
-    window.addEventListener('resize', this.handleResize.bind(this));
-    this.root.addEventListener('keyup', function (e) {
-      if (e.key === "ArrowRight") {
-        _this.next();
-      } else if (e.key === 'ArrowLeft') {
-        _this.prev();
+$(document).ready(function () {
+  $(".owl-carousel").owlCarousel({
+    margin: 10,
+    responsive: {
+      0: {
+        items: 1
+      },
+      600: {
+        items: 3
+      },
+      1000: {
+        items: 5
       }
-    });
-    this.CarouselTouchEvent = new CarouselTouchEvent(this);
-  }
-
-  /**
-   * applique les styles
-   */
-  _createClass(Carousel, [{
-    key: "setStyle",
-    value: function setStyle() {
-      var _this2 = this;
-      var ratio = this.items.length / this.slidesVisible;
-      this.container.style.width = ratio * 100 + "%";
-      this.items.forEach(function (item) {
-        item.style.width = 100 / _this2.slidesVisible / ratio + "%";
-      });
-    }
-  }, {
-    key: "createNavigation",
-    value: function createNavigation() {
-      var _this3 = this;
-      var nextButton = this.createElement('div', 'fas fa-arrow-right carousel__next');
-      var prevButton = this.createElement('div', 'fas fa-arrow-left carousel__prev');
-      this.root.appendChild(nextButton);
-      this.root.appendChild(prevButton);
-      nextButton.addEventListener('click', this.next.bind(this));
-      prevButton.addEventListener('click', this.prev.bind(this));
-      if (this.options.loop) {
-        return;
-      }
-      this.onMove(function (index) {
-        if (index === 0) {
-          prevButton.classList.add('carousel--prev__hidden');
-        } else {
-          prevButton.classList.remove('carousel--prev__hidden');
-        }
-        if (_this3.items[index + _this3.slidesVisible] === undefined) {
-          nextButton.classList.add('carousel--next__hidden');
-        } else {
-          nextButton.classList.remove('carousel--next__hidden');
-        }
-      });
-    }
-  }, {
-    key: "next",
-    value: function next() {
-      this.gotoItem(this.currentItem + this.slidesVisible);
-    }
-  }, {
-    key: "prev",
-    value: function prev() {
-      this.gotoItem(this.currentItem - this.slidesVisible);
-    }
-
-    /**
-     * @param {number} index la direction où aller
-     */
-  }, {
-    key: "gotoItem",
-    value: function gotoItem(index) {
-      if (index < 0) {
-        // IL FAUT EGALEMENT VERIFIER QUE LE BOUTON CLIQUE EST CACHE OU VISIBLE
-        if (this.options.loop) {
-          index = this.items.length - this.slidesVisible;
-        } else {
-          return;
-        }
-      } else if (index >= this.items.length || this.items[index] === undefined && index > this.currentItem) {
-        if (this.options.loop) {
-          index = 0;
-        } else {
-          return;
-        }
-      }
-      var translateX = index * -100 / this.items.length + "%";
-      this.translate(translateX);
-      this.currentItem = index;
-      this.CarouselTouchEvent.carouselCurrentItem = index;
-      this.moveCallbacks.forEach(function (cb) {
-        return cb(index);
-      });
-    }
-
-    /**
-     * rajoute un callback dans moveCallbacks
-     * 
-     * @param {moveCallback} cb affiche ou cache un bouton 
-     */
-  }, {
-    key: "onMove",
-    value: function onMove(cb) {
-      this.moveCallbacks.push(cb);
-    }
-  }, {
-    key: "disableTransition",
-    value: function disableTransition() {
-      this.container.style.transition = 'none';
-    }
-  }, {
-    key: "enableTransition",
-    value: function enableTransition() {
-      this.container.style.transition = '';
-    }
-  }, {
-    key: "translate",
-    value: function translate(translateX) {
-      this.container.style.transform = "translate3d(".concat(translateX, ", 0, 0)");
-    }
-
-    /**
-     * @return {HTMLElement} element
-     */
-  }, {
-    key: "createElement",
-    value: function createElement(type) {
-      var className = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-      var element = document.createElement(type);
-      if (className !== null) {
-        element.className = className;
-      }
-      return element;
-    }
-
-    /**
-     * stoppe la propagation d'évènement dans les boutons
-     * @param {Event} e
-     */
-  }, {
-    key: "stopPropagation",
-    value: function stopPropagation(e) {
-      if (this.i >= 1) {
-        e.stopPropagation();
-      }
-      this.i++;
-    }
-
-    /**
-     * changement au niveau du carousel lors d'une resize
-     */
-  }, {
-    key: "handleResize",
-    value: function handleResize() {
-      var htmlBalise = document.querySelector('html');
-      var mobile = htmlBalise.clientWidth <= 500;
-      var desktop = htmlBalise.clientWidth > 500 && htmlBalise.clientWidth <= 900;
-      if (mobile !== this.isMobile) {
-        this.isMobile = mobile;
-        this.setStyle();
-      } else if (desktop !== this.isDesktop) {
-        this.isDesktop = desktop;
-        this.setStyle();
-      }
-    }
-  }, {
-    key: "slidesVisible",
-    get: function get() {
-      if (this.isMobile) {
-        return 1;
-      } else if (this.isDesktop) {
-        return this.options.visible;
-      } else {
-        return 3;
-      }
-    }
-  }, {
-    key: "slidesToScroll",
-    get: function get() {
-      if (this.isMobile) {
-        return 1;
-      } else if (this.isDesktop) {
-        return this.options.offset;
-      } else {
-        return 3;
-      }
-    }
-  }, {
-    key: "containerWidth",
-    get: function get() {
-      return this.container.offsetWidth;
-    }
-  }]);
-  return Carousel;
-}();
-
-/**
- * @param {HTMLElement} carousel
- */
-var CarouselTouchEvent = /*#__PURE__*/function () {
-  function CarouselTouchEvent(carousel) {
-    _classCallCheck(this, CarouselTouchEvent);
-    if (carousel.items.length > 1) {
-      // ANNULER L'EFFET DE DRAG SUR UNE IMAGE PAR LA SOURIS
-      window.addEventListener('dragstart', function (e) {
-        e.preventDefault();
-      });
-      carousel.container.addEventListener("mousedown", this.startDrag.bind(this));
-      carousel.container.addEventListener("touchstart", this.startDrag.bind(this));
-      this.stopPropagationOfTouchstartEventOn([carousel.container.querySelectorAll('.heart-icon'), carousel.container.querySelectorAll('.add')]);
-      window.addEventListener('mousemove', this.drag.bind(this));
-      window.addEventListener('touchmove', this.drag.bind(this));
-      window.addEventListener('touchcancel', this.endDrad.bind(this));
-      window.addEventListener('touchend', this.endDrad.bind(this));
-      window.addEventListener('mouseup', this.endDrad.bind(this));
-    }
-    this.carousel = carousel;
-    this.carouselContainerWidth = this.carousel.containerWidth;
-    this.carouselCurrentItem = this.carousel.currentItem;
-  }
-
-  /**
-   * 
-   * @param {Event} e 
-   * @returns 
-   */
-  _createClass(CarouselTouchEvent, [{
-    key: "startDrag",
-    value: function startDrag(e) {
-      if (e.touches) {
-        if (e.touches.length > 1) {
-          return;
-        } else {
-          e = e.touches[0];
-        }
-      }
-      this.origin = {
-        x: e.screenX,
-        y: e.screenY
-      };
-      this.carousel.disableTransition();
-    }
-
-    /**
-     * 
-     * @param {Event} e 
-     */
-  }, {
-    key: "drag",
-    value: function drag(e) {
-      if (this.origin) {
-        var touch = e.touches ? e.touches[0] : e;
-        this.translate = {
-          x: touch.screenX - this.origin.x,
-          y: touch.screenY - this.origin.y
-        };
-        var baseTranslate = this.carouselCurrentItem * -100 / this.carousel.items.length;
-        this.carousel.translate(baseTranslate + this.translate.x * 100 / this.carouselContainerWidth + "%");
-        if (this.carouselCurrentItem < 0) {
-          this.carouselCurrentItem = 0;
-        } else if (this.carouselCurrentItem > this.carousel.items.length / this.carousel.slidesVisible) {
-          this.carouselCurrentItem = this.carousel.items.length / this.carousel.slidesVisible;
-        }
-      }
-    }
-
-    /**
-     * Fin du drag
-     */
-  }, {
-    key: "endDrad",
-    value: function endDrad(e) {
-      if (this.origin) {
-        this.carousel.enableTransition();
-        this.origin = null;
-        if (this.translate !== undefined && this.translate.x < 0) {
-          this.carouselCurrentItem = this.carouselCurrentItem + Math.abs(this.translate.x / this.carousel.items[0].offsetWidth);
-        } else if (this.translate !== undefined && this.translate.x > 0) {
-          this.carouselCurrentItem = this.carouselCurrentItem - Math.abs(this.translate.x / this.carousel.items[0].offsetWidth);
-        }
-        if (this.carouselCurrentItem < 0) {
-          this.carouselCurrentItem = 0;
-        }
-      }
-    }
-
-    /**
-     * stoppe la propagation du toucstart sur les elements en params
-     * 
-     * @param {HTMLElement[]} allElements contient des HTMLCollections
-     */
-  }, {
-    key: "stopPropagationOfTouchstartEventOn",
-    value: function stopPropagationOfTouchstartEventOn(allElements) {
-      allElements.forEach(function (elements) {
-        if ((0,lodash__WEBPACK_IMPORTED_MODULE_0__.isArrayLike)(elements)) {
-          elements.forEach(function (el) {
-            el.addEventListener('touchstart', function (e) {
-              e.stopPropagation();
-            });
-          });
-        } else {
-          if (elements !== null) {
-            elements.addEventListener('touchstart', function (e) {
-              e.stopPropagation();
-            });
-          }
-        }
-      });
-    }
-  }]);
-  return CarouselTouchEvent;
-}();
+    },
+    lazyLoad: true
+  });
+});
 
 /***/ }),
 
@@ -8361,19 +8004,16 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 var Responsive = /*#__PURE__*/function () {
   function Responsive() {
     _classCallCheck(this, Responsive);
-    this.header = document.querySelector('header');
     this.html = document.querySelector('html');
-    this.header.style.width = this.html.clientWidth + 'px';
-    window.addEventListener('resize', this.resize.bind(this));
+    this.modalContainer = document.querySelector('.modal-container');
+    if (this.modalContainer) {
+      window.addEventListener('resize', this.resize.bind(this));
+    }
   }
   _createClass(Responsive, [{
     key: "resize",
     value: function resize() {
-      this.header.style.width = this.html.clientWidth + 'px';
-      var modalContainer = document.querySelector('.modal-container');
-      if (modalContainer !== null) {
-        modalContainer.style.width = this.html.clientWidth + "px";
-      }
+      this.modalContainer.style.width = this.html.clientWidth + "px";
     }
   }]);
   return Responsive;

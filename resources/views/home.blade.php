@@ -16,7 +16,7 @@
                 <p>{{ $category->name }}</p>
                 <a href="{{ route('category.show', ['slug' => $category->slug, 'id' => $category->id]) }}" class="reveal">Voir tout <span class="reveal_arrow">&RightArrow;</span></a>
             </div>
-            <div id="Carousel">
+            <div class="owl-carousel owl-theme">
                 @include('partials.recipes')
             </div>
             @include('partials.hidden-category-infos')

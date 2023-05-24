@@ -29,7 +29,6 @@ export function SimpleUserButtonsAction()
 
         image.addEventListener('touchstart', (e)=>{
             touchCount++
-            console.log(touchCount)
             if(touchCount === 1){
                 firstTouchTime = Date.now()
             }else if(touchCount === 2){

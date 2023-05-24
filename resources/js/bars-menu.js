@@ -1,5 +1,4 @@
 import { createElement } from "./create-modal"
-import { get } from "./ajax"
 import { HandleLogout } from "./actions/logout"
 
 let bars 

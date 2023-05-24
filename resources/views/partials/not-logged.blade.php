@@ -1,3 +1,7 @@
-<header class="not_logged_header">
-    <h1><a href='/' class="logo">LOGO</a></h1>
-</header>
+<div class="container">
+    <nav class="navbar navbar-expand-sm bg-light fixed-top">
+        <div class="container-fluid">
+            <a href='/' class="logo navbar-brand">Benkyo</a>
+        </div>
+    </nav>
+</div>

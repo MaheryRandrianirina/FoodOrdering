@@ -18,9 +18,6 @@
         <div class="circle_loader"></div>
         <div>
             @include('partials.navbar')
-            @if(Auth::user() !== null)
-                @include('partials.barmenu')
-            @endif
             <main>
                 @yield('content')
             </main>
@@ -29,5 +26,6 @@
     <!-- Scripts -->
     <script src="{{ asset('js/jquery-3.6.0.min.js') }}" defer></script>
     <script src="{{ asset('js/owl.carousel.min.js') }}" defer></script>
+    <script src="{{ asset('js/bootstrap.bundle.min.js') }}" defer></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
 </html>

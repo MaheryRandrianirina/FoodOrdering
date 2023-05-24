@@ -6692,7 +6692,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function Search() {
-  var q = document.querySelector('.search-input');
+  var q = document.querySelector('.search_input');
+  console.log(q);
   if (q !== null) {
     var btn = q.nextElementSibling;
     q.addEventListener('click', getAll);
@@ -6722,9 +6723,13 @@ function Search() {
  * @param {Event} e 
  */
 function showSearchSuggestions(e) {
+  /**
+   * @type {HTMLInputElement}
+   */
   var q = e.target;
   var keys = JSON.parse(localStorage.getItem('search-keys'));
   var suggestionsContainer = document.querySelector('.search-suggestions');
+  suggestionsContainer.style.top = q.offsetTop + q.offsetHeight + 10 + 'px';
   if (!suggestionsContainer.classList.contains('active-suggestion')) {
     suggestionsContainer.classList.add('active-suggestion');
   }

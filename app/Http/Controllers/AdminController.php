@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Actions\indispensableForAdminInterfaceTrait;
 use App\Models\Recipe;
-use App\Models\Recipe_user;
 use App\Models\User;
+use App\Models\UserRecipes;
 use Illuminate\Http\Request;
 
 
@@ -38,7 +38,7 @@ class AdminController extends Controller
 
     private function setInstanceVariablesUsersAndUserCommandsValues(): void
     {
-        $commands = Recipe_user::all();
+        $commands = UserRecipes::all();
         $i = 0;
 
         foreach($commands as $command){

@@ -2,7 +2,8 @@ import { get, post } from "../ajax"
 import { createElement } from "../create-modal"
 
 export function Search(){
-    let q = document.querySelector('.search-input')
+    let q = document.querySelector('.search_input')
+    console.log(q)
     if(q !== null){
         let btn = q.nextElementSibling
 
@@ -36,10 +37,14 @@ export function Search(){
  * @param {Event} e 
  */
 function showSearchSuggestions(e){
+    /**
+     * @type {HTMLInputElement}
+     */
     let q = e.target
     let keys = JSON.parse(localStorage.getItem('search-keys'))
     let suggestionsContainer = document.querySelector('.search-suggestions')
-    
+    suggestionsContainer.style.top = q.offsetTop + q.offsetHeight + 10 + 'px'
+
     if(!suggestionsContainer.classList.contains('active-suggestion')){
         suggestionsContainer.classList.add('active-suggestion')
     }

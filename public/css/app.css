@@ -20,13 +20,11 @@ html {
     --primary: #56508c;
     --gray: #dfdfdf;
     --black: #2c2c2c;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+            user-select: none;
 }
-html::-moz-selection {
-    background-color: transparent;
-}
-html::selection {
-    background-color: transparent;
-}
+
 body {
     height: 100%;
     margin: 0;
@@ -34,6 +32,7 @@ body {
     font-family: "Montserrat", sans-serif;
     background-color: rgba(36, 36, 36, 0.507);
     color: var(--black);
+    overflow-y: scroll;
 }
 
 main {
@@ -52,72 +51,38 @@ main .home.container {
 button {
     border: none;
 }
-header {
-    position: fixed;
-    font-family: 'Montserrat';
-    padding: 10px;
-    z-index: 10;
-    background: #fff;
+
+.navbar.navbar-expand-md {
     box-shadow: 0 0 7px rgba(0, 0, 0, 0.87);
-}
-
-header .navigation {
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: center;
-    justify-content: space-around;
-}
-.citations h3 {
-    font-family: "Montserrat";
-    font-size: 1rem;
-}
-
-.citations p {
-    font-family: "Montserrat-thin";
-    font-style: italic;
-}
-
-header h1 {
-    margin: 10px 0 0 0;
-    width: 20%;
-    font-size: 18px;
-}
-header nav {
-    position: relative;
-    width: 20%;
-    height: 40px;
-}
-
-header .search {
-    height: 30px;
-    width: 60%;
-    margin-top: 4px;
-    
-}
-header .logo {
-    text-decoration: none;
-    font-weight: bold;
-    color: #56508c;
 }
 .name {
     font-size: 12px;
 }
-header i {
-    color: #56508c;
-    font-size: 30px;
-}
 
-header .menu-to-remove-later {
-    display: none;
-}
-
-header .login {
+.login {
     position: absolute;
-    right: 0;
-    top: 4px;
+    left: 100px;
+    top: 5px;
+}
+
+.navbar.navbar-expand-md {
+    z-index: 10;
+}
+nav .logout {
     cursor: pointer;
 }
 
+nav .logout a.nav-link {
+    height: 36px;
+    color: var(--primary);
+    transition: color .3s;
+}
+nav .basket a.nav-link:hover, nav .logout a.nav-link:hover {
+    color: rgb(0, 89, 255);
+}
+.nav-item .basket {
+    color: var(--primary);
+}
 .search_results {
     padding: 30px 15px;
 }
@@ -125,49 +90,53 @@ header .login {
     margin-bottom: 20px;
     font-weight: 600;
 }
-.mobile_login {
-    background-color: #56508c;
-    padding: 3px;
-    border-radius: 50%;
-    cursor: pointer;
-}
-
-.mobile_login_icon {
-    color: #fff;
-    padding: 3px;
-    transition: transform .5s ease-in-out;
-}
-
-.mobile_login_icon:hover {
-    transform: rotate(360deg);
-}
 
 .login .button {
-    display: none;
     transition: filter .3s;
     font-size: 13px;
     height: 30px;
     padding: 4px 10px;
     border-radius: 30px;
+    transition: filter .3s, color .3s;
 }
 .login .login-icon-inside-button {
     display: inline-block;
     padding-left: 2px;
     border-left: 1px solid #fff;
 }
+
 .login .button:hover {
+    color:#dfdfdf;
     filter: contrast(1.2);
 }
 
-header .login a{
-    text-decoration: none;
-    color: #fff;
+.navbar form {
+    background-color: var(--gray);
+    border-radius: 30px;
 }
 
-header .logout, header .basket {
-    display: none;
+#navbarSupportedContent #search_input {
+    background-color: transparent;
+    border: transparent;
 }
 
+.btn.btn-outline-success {
+    color: var(--primary);
+    border: transparent;
+    transition: backgroun-color .3s, border-top-right-radius .3s, border-bottom-right-radius .3s;
+}
+.btn.btn-outline-success:hover {
+    background-color: var(--primary);
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
+    border: transparent;
+}
+.container .navbar .logo.navbar-brand {
+    color: var(--primary);
+}
+.container-fluid {
+    position: relative;
+}
 .not_logged_header {
     height: 50px;
 }
@@ -177,65 +146,10 @@ header .logout, header .basket {
     margin: 5px auto;
     font-weight: bold;
 }
-.search form {
-    height: 100%;
-    display: flex;
-    color: #09405c;
-    background-color: var(--gray);
-    border-radius: 30px;
-    position: relative;
-}
-
-.search form .loupe {
-    font-size: 18px;
-    width: 100%;
-    height: 100%;
-    padding: 5px;
-}
-
-.search-input {
-    position: absolute;
-    left: 0;
-    height: 100%;
-    width: 80%;
-    font-size: 12px;
-    background: transparent;
-    border: none;
-    padding: 10px;
-}
-
-.search-input::-moz-placeholder {
-    margin-left: 10px;
-}
-
-.search-input::placeholder {
-    margin-left: 10px;
-}
-
-.parent {
-    position: relative;
-}
-
-.search button {
-    width: 20%;
-    height: 100%;
-    border: none;
-    border-top-right-radius: 30px;
-    border-bottom-right-radius: 30px;
-    position: absolute;
-    right: 0;
-    transition: filter .3s;
-    background-color: var(--gray);
-}
-
-.search button:hover {
-    filter: contrast(1.2);
-}
 
 .search-suggestions {
     display: none;
     position: fixed;
-    top: 55px;
     color: rgb(0, 0, 0);
     border-radius: 5px;
     background-color: rgb(255, 255, 255);
@@ -405,7 +319,7 @@ button {
 
 .heart-icon {
     position: absolute;
-    top: 65px;
+    top: 15px;
     right: 0;
     color: #fea702;
     cursor: pointer;
@@ -590,11 +504,12 @@ button {
 /** PARTIE PHOTO DE PROFIL DE TOUT UTILISATEUR**/
 .profile-photo-menu {
     position: fixed;
-    background: var(--gray);
+    background: var(--black);
     border-radius: 5px;
     top: 37px;
     z-index: 10;
     width: 120px;
+    box-shadow: 1px 1px 3px #8a8a8a, -1px 1px 3px #8a8a8a;
 }
 
 .show-profile-photo {
@@ -607,7 +522,7 @@ button {
     width: 95%;
     cursor: pointer;
     color: #56508c;
-    transition: background .3s;
+    transition: color .3s;
 }
 
 .modal-container .photo-edit-modal {
@@ -616,8 +531,7 @@ button {
 
 .show-profile-photo:hover , .edit-profile-photo:hover  {
     border-radius: 2px;
-    background: #fff;
-    color: #56508c;
+    color: var(--gray);
 }
 
 .profile-photo-container {
@@ -772,12 +686,12 @@ PARTIE PROFILE PHOTO
 }
 
 .profile {
-    color: #09405c;
-    margin-top: 5px;
-    float: right;
+    color:#8a8a8a;
+    margin-right: 50px;
 }
 
-.profile div {
+.profile .name {
+    text-align: center;
     display: block;
 }
 
@@ -1012,6 +926,7 @@ PARTIE RECIPES
          column-gap: 10px;
     position: relative;
     font-size: 1rem;
+    font-style: italic;
     margin: 15px 0 16px;
     line-height: 20px;
     letter-spacing: 2.5px;
@@ -1162,72 +1077,6 @@ PARTIE MENU BAR
     opacity: 0;
     transform: rotate(-180deg);
 }
-/* ON AJOUTERA LA CLASSE ACTIVE QUI EST UN PEU PLUS HAUT */
-.hamburger-menu {
-    position: fixed;
-    font-size: 14px;
-    opacity: 0;
-    top: 100px;
-    right: 0;
-    padding: 10px;
-    color: #fff;
-    width: 70%;
-    height: 100px;
-    background-color: #252525;
-    box-shadow: -1px 1px 5px rgba(36, 36, 36, 0.795);
-    border-radius: 5px;
-    transition: transform .3s, opacity .3s;
-    z-index: 15;
-}
-.hamburger-menu .logout, .hamburger-menu .basket {
-    position: absolute;
-    width: 90%;
-    cursor: pointer;
-    padding: 2px 5px;
-    transition: background .3s, color .3s;
-}
-
-.hamburger-menu svg {
-    height: 20px;
-}
-
-.hamburger-menu .logout {
-    bottom: 10px;
-    width: 90%;
-}
-
-.hamburger-menu .basket {
-    bottom: 45px;
-    display: block;
-    text-decoration: none;
-    color: #fff;
-}
-
-.hamburger-menu .basket i {
-    margin-right: 5px;
-    font-size: 20px;
-}
-
-.hamburger-menu .logout:hover, .hamburger-menu .basket:hover {
-    background: #fff;
-    color: #56508c;
-}
-
-.logout span {
-    margin-left: 5px;
-}
-
-.logout svg {
-    float: left;
-}
-
-.active-hamburger {
-    opacity: 1;
-    transform: translateY(10px);
-}
-.hamburger-menu .icon:hover {
-    color: #fff;
-}
 
 .sure {
     height: 175px;
@@ -1302,15 +1151,6 @@ PARTIE MENU BAR
 FIN PARTIE MENU BAR
 --------------------*/
 
-
-/*-------------------
-CAROUSEL
--------------------*/
-
-/*-------------------
-FIN CAROUSEL
--------------------*/
-
 /*------------------
 HEART
 ------------------*/
@@ -1319,21 +1159,7 @@ HEART
 }
 /*--------------
 FIN HEART
---------------*/
 /*--------------
-PANIER
---------------*/
-.empty-basket {
-    margin: 100px;
-    color: #56508c;
-}
-.empty-basket i {
-    font-size: 150px;
-}
-/*--------------
-FIN PANIER
---------------*/
-
 
 /*------------------
 COMMANDS
@@ -1350,8 +1176,13 @@ COMMANDS
     text-align: center;
     width: 100%;
 }
+
 .container.wishes {
     margin-top: 30px;
+}
+
+.container.wishes .box {
+    margin-bottom: 30px;
 }
 
 .wishes img {
@@ -1425,8 +1256,6 @@ COMMANDS
     padding: 10px;
 }
 
-
-/* POUR MOINS DE 600px*/
 .admin-table tbody td {
     text-align: center;
 }
@@ -1568,17 +1397,6 @@ FIN COMMANDS
 }
 
 @media only screen and (min-width:350px) {
-    header .search {
-        width: 50%;
-    }
-
-    header nav {
-        width: 30%;
-    }
-
-    .form-container form {
-        padding: 30px;
-    }
 
     .search .loupe {
         font-size: 20px;
@@ -1647,6 +1465,13 @@ FIN COMMANDS
         right: 20px;
     }
 }
+
+@media only screen and (min-width:350px) and (max-width:500px) {
+    .container.wishes .box {
+        width: 80%;
+    }
+}
+
 @media only screen and (min-width: 351px) and (max-width:449px) {
     
     .admin-table .tab-head .head_user {
@@ -1667,6 +1492,14 @@ FIN COMMANDS
 
     .admin-table .hot_dog_menu {
         margin-top: 0;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .profile {
+        position: absolute;
+        top: 5px;
+        left: 90px;
     }
 }
 
@@ -1731,25 +1564,7 @@ FIN COMMANDS
 }
 
 @media only screen and (min-width:500px) and (max-width:800px) {
-    header .search {
-        width: 40%;
-    }
 
-    header nav {
-        width: 40%;
-    }
-
-    nav .mobile_login {
-        display: none;
-    }
-
-    .login {
-        top: 0;
-    }
-    .login .button {
-        display: block;
-    }
-    
     .form-container {
         width: 336px;
         margin: 0 auto;
@@ -1772,27 +1587,19 @@ FIN COMMANDS
     .box .box-description {
         height: 140px;
     }
+
+    .container.wishes .box {
+        width: 50%;
+    }
 }
 
 @media only screen and (min-width:600px) {
     main .container {
         max-width: unset;
     }
-
-    nav .mobile_login {
-        display: none;
-    }
-
-    .login {
-        top: 0;
-    }
     
     .sure {
         padding: 20px 50px;
-    }
-
-    .login .button {
-        display: block;
     }
 
     .main-modal {
@@ -1890,48 +1697,11 @@ FIN COMMANDS
 }
 
 @media only screen and (min-width:801px) {
-    header {
-        box-shadow: none;
-    }
-
-    header .navigation, .not_logged_header h1 {
-        width: 98%;
-        margin: 0 auto;
-        padding: 15px;
-        height: 60px;
-        border-radius: 30px;
-        box-shadow: 1px 1px 3px rgb(114, 114, 114), -1px -1px 2px rgb(114, 114, 114);
-    }
-
-    .navigation h1, .navigation .search, .navigation .logout {
-        margin: 0;
-    }
-
-    header .search {
-        width: 30%;
-    }
-
-    header nav {
-        display: inherit;
-        justify-content: space-between;
-        width: 35%;
-    }
-
-    nav .mobile {
-        display: none;
-    }
-    
-    nav .login {
-        top: 0;
-    }
 
     .profile-photo-menu {
         top: 50px;
     }
     
-    .login .button {
-        display: block;
-    }
     .form-container {
         width: unset;
         margin: 0 28%;
@@ -1950,56 +1720,12 @@ FIN COMMANDS
         border: 1px solid #56508c;
     }
 
-    nav .basket, nav .logout, nav .profile {
-        position: absolute;
-        display: inline-block;
-        font-size: 13px;
-        cursor: pointer;
-        margin: 0;
-        transition: background .3s, transform .3s;
-    }
-
     nav .profile {
         right: 0;
     }
 
-    nav .logout {
-        right: 80px;
-        margin-top: 8px;
-        padding: 8px;
-        width: 120px;
-        text-align: center;
-        height: 35px;
-        color: var(--primary);
-        border: 1px solid var(--primary);
-        border-radius: 20px;
-        transition: background .3s, color .3s;
-    }
-    
-    nav .logout:hover {
-        background-color: var(--primary);
-        color: #fff;
-        filter: contrast(1.2);
-    }
-
-    nav .basket {
-        right: 220px;
-        padding: 6px;
-        transition: filter .3s, transform .3s;
-    }
-
-    nav .basket i {
-        font-size: 20px;
-        color: #56508c;
-    }
-    
-    nav .basket:hover {
-        transform: scale(1.1);
-        filter: contrast(1.3);
-    }
-    
-    .bars, .hamburger-menu {
-        display: none;
+    .container.wishes .box {
+        width: 30%;
     }
 }
 
@@ -2027,17 +1753,13 @@ FIN COMMANDS
     .form-register-container {
         padding: 30px 17%;
     }
+
+    .form-container form {
+        padding: 30px;
+    }
 }
 
 @media only screen and (min-width:1000px) {
-    
-    header .search {
-        width: 20%;
-    }
-
-    header .menu-to-remove-later {
-        display: block;
-    }
 
     .form-container{
         margin: 0 30%;
@@ -2057,6 +1779,10 @@ FIN COMMANDS
     .box .box-description {
         height: 200px;
     }
+    
+    .form-container form {
+        padding: 60px;
+    }
 }
 
 @media only screen and (min-width: 1150px) {
@@ -2070,6 +1796,10 @@ FIN COMMANDS
 
     .container.wishes img {
         height: 250px;
+    }
+    
+    .container.wishes .box {
+        width: 25%;
     }
 }
 
